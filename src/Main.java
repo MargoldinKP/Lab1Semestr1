@@ -1,17 +1,41 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
-
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
-
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        int count = 0;
+        Scanner input = new Scanner(System.in);
+        // Вводим левую границу:
+        System.out.print("Введите левую границу: ");
+        double left = input.nextDouble();
+        // Вводим правую границу:
+        System.out.print("Введите правую границу: ");
+        double right = input.nextDouble();
+        // Шаг:
+        System.out.print("Введите шаг: ");
+        double step = input.nextDouble();
+        while (step <= 0)
+        {
+            System.out.println("Шаг не может быть меньше либо равен нулю");
+            System.out.print("Введите шаг: ");
+            step = input.nextDouble();
         }
+        // Выводим заголовок:
+        System.out.println("Аргумент | Значение функции");
+
+        // Цикл для вывода значений функции:
+        for (double x = left; x <= right; x += step)
+        {
+            // Значение функции:
+            double result = x * Math.exp(x) + 2 * Math.sin(x) - Math.sqrt(Math.abs(Math.pow(x, 3) - Math.pow(x, 2)));
+
+            // Выводим аргумент и значение функции:
+            System.out.printf("x=%.2f   |   y=%.2f%n", x, result);
+
+            // Условие для подсчета положительных значений с четной целой и дробной частями меньше 0,5:
+            if (result > 0 && (int)result % 2 == 0 && result % 1 < 0.5) {
+                count++;
+            }
+        }
+        // Выводим подходящие значения:
+        System.out.println("Количество положительных значений с четной целой и дробной частью < 0.5: " + count);
     }
 }

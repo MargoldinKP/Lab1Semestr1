@@ -1,58 +1,41 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ChangeListManager">
-    <list default="true" id="4efaca8e-c5b4-4411-8df4-4f7b1dba1e02" name="Changes" comment="" />
-    <option name="SHOW_DIALOG" value="false" />
-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
-    <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
-  <component name="ProjectId" id="2VtZzGj8SnETUsl622uUOqOxafx" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "onboarding.tips.debug.path": "C:/Intellij Idea/Lab.N1/src/Main.java",
-    "vue.rearranger.settings.migration": "true"
-  }
-}]]></component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="4efaca8e-c5b4-4411-8df4-4f7b1dba1e02" name="Changes" comment="" />
-      <created>1695657599624</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1695657599624</updated>
-      <workItem from="1695657600629" duration="4000" />
-    </task>
-    <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
-</project>
+import java.util.Scanner;
+        public class Main {
+        public static void main(String[] args) {
+        int count = 0;
+        Scanner input = new Scanner(System.in);
+        // Вводим левую границу:
+        System.out.print("Введите левую границу: ");
+        double left = input.nextDouble();
+        // Вводим правую границу:
+        System.out.print("Введите правую границу: ");
+        double right = input.nextDouble();
+        // Шаг:
+        System.out.print("Введите шаг: ");
+        double step = input.nextDouble();
+        while (step <= 0)
+        {
+        System.out.println("Шаг не может быть меньше либо равен нулю");
+        System.out.print("Введите шаг: ");
+        step = input.nextDouble();
+        }
+        // Выводим заголовок:
+        System.out.println("Аргумент | Значение функции");
+
+        // Цикл для вывода значений функции:
+        for (double x = left; x <= right; x += step)
+        {
+        // Значение функции:
+        double result = x * Math.exp(x) + 2 * Math.sin(x) - Math.sqrt(Math.abs(Math.pow(x, 3) - Math.pow(x, 2)));
+
+        // Выводим аргумент и значение функции:
+        System.out.printf("x=%.2f   |   y=%.2f%n", x, result);
+
+        // Условие для подсчета положительных значений с четной целой и дробной частями меньше 0,5:
+        if (result > 0 && (int)result % 2 == 0 && result % 1 < 0.5) {
+        count++;
+        }
+        }
+        // Выводим подходящие значения:
+        System.out.println("Количество положительных значений с четной целой и дробной частью < 0.5: " + count);
+        }
+        }
